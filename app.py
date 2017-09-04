@@ -47,7 +47,7 @@ def plot_data(df, column_name, ticker):
 	ticker = ticker.upper()
 	
 	plot = figure(x_axis_type='datetime')
-	plot.title = column_name + ' price for ' + ticker
+	#plot.title = column_name + ' price for ' + ticker
 
 	plot.line(df.index, df[column_name])
 
