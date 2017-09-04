@@ -47,7 +47,7 @@ def plot_data(df, column_name, ticker):
 	ticker = ticker.upper()
 	
 	plot = figure(x_axis_type='datetime')
-	#plot.title = column_name + ' price for ' + ticker
+	plot.title.text = column_name + ' price for ' + ticker
 
 	plot.line(df.index, df[column_name])
 
@@ -77,16 +77,13 @@ def result_page():
 	ticker = request.form['stock']
 	column_name = request.form['feature']
 	
-	print ticker, column_name
 	df = fetch_quandl(ticker, api_key)
-	print 'OK'
 	
 	if not type(df) == pd.DataFrame:
-		msg = "Sorry, that ticker isn't valid. Please try again."
+		msg = "Wrong ticker name, please try again."
 		return render_template('index.html', msg=msg)
 
 	else:
-		print 'I am here'
 		script, div = plot_data(df, column_name, ticker)
 		return render_template('plot.html', script=script, div=div)	
 
