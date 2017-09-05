@@ -1,27 +1,20 @@
 <!doctype html>
 <title>Milestone Project</title>
 
-<link
-    href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.0.min.css"
-    rel="stylesheet" type="text/css"
->
-<div class=page>
-  <h1>Stock plotter</h1>
+  <link rel=stylesheet type=text/css href='{{ url_for('static',filename='style_lulu.css')}}'>
+  <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.js"></script>
 
   <div class=metanav>
 
 
-    <h2>Please enter a stock ticker (e.g., AAPL).</h2>
+    <h2>Please enter a stock ticker.</h2>
 
     <h4>
       <form id='answerform' method='post' action='resultpage' >
 	<p>
-		Ticker : <input type='text' name='stock' />
+		Ticker : <input type='text' name='stock' placeholder='AAPL' />
 	  </p>
         <p>
-		<!-- hidden input means that even if nothing is checked, sanity ensured -->
-		<!-- see http://www.sitepoint.com/html-radio-radio-button-defaults/ -->
-		<!-- input type="hidden" name='pricecheck' value='Close' / -->
 
 		<input type="radio" name='feature' value='Close' align='left' checked='yes' /> Closing price<br>
 		<input type="radio" name='feature' value='Open' align='left' /> Opening price<br>

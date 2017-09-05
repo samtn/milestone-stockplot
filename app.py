@@ -43,13 +43,21 @@ def fetch_quandl(ticker, api_key, period=30):
 
 def plot_data(df, column_name, ticker):
 
-	print ('made it to plotting...')
 	ticker = ticker.upper()
 	
-	plot = figure(x_axis_type='datetime')
+	plot = figure(x_axis_type='datetime', width=800, height=600)
 	plot.title.text = column_name + ' price for ' + ticker
+	plot.title.text_font_size='20pt'
+	plot.background_fill_color = "beige"
+	plot.background_fill_alpha = 0.5
 
-	plot.line(df.index, df[column_name])
+	plot.line(df.index, df[column_name], line_width=3)
+	plot.circle(df.index, df[column_name], size=15, alpha=0.5)
+
+	plot.xaxis.axis_label = 'Date'
+	plot.xaxis.axis_label_text_font_size = "20pt"
+	plot.yaxis.axis_label = 'Price ($)'
+	plot.yaxis.axis_label_text_font_size = "20pt"
 
 	bokeh.io.output_file('templates/plot.html')
 	bokeh.io.save(plot)
