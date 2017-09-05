@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect 
 import datetime as dt
 import requests
 import pandas as pd
 import bokeh
 from bokeh.plotting import figure
+
 
 #------------------------------------------------------------------
 
@@ -59,9 +60,6 @@ def plot_data(df, column_name, ticker):
 	plot.yaxis.axis_label = 'Price ($)'
 	plot.yaxis.axis_label_text_font_size = "20pt"
 
-	bokeh.io.output_file('templates/plot.html')
-	bokeh.io.save(plot)
-
 	script, div = bokeh.embed.components(plot)
 
 	return script, div
@@ -83,7 +81,7 @@ def index():
 def result_page():
 
 	ticker = request.form['stock']
-	column_name = request.form['feature']
+	column_name = request.form['feature'].strip()
 	
 	df = fetch_quandl(ticker, api_key)
 	
